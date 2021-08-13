@@ -1,0 +1,11 @@
+<div [innerHTML]="data.titulo | sanitizeHtml"></div>
+<br/>
+<mat-dialog-actions align="end" >
+    <button mat-button color="accent" [mat-dialog-close] *ngIf="!data.cancelar">
+        Cancelar
+      </button>
+    <button mat-stroked-button color="primary" (click)="aceptaConfirmacion()"
+      style="margin-left: 10px">
+      {{ data.tituloBoton }}
+    </button>
+</mat-dialog-actions>

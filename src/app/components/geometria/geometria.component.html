@@ -1,0 +1,91 @@
+<app-toolbar style="position: fixed; width: 100%; z-index: 1000"></app-toolbar>
+<br /><br /><br /><br />
+<mat-drawer-container>
+    <!-- Contenido -->
+    <mat-drawer-content class="sidenav-content">
+
+        <form [formGroup]="form" (keydown.enter)="$event.preventDefault()">
+            <div class="container" style="max-width: 100%;">
+                <span style="float:right;">
+                    <mat-form-field style="width: 250px;">
+                        <input matInput (keyup)="applyFilter($event.target.value)" formControlName="keywords"
+                            placeholder="Búsqueda por palabras clave" />
+                    </mat-form-field>
+                </span>
+
+            </div>
+            <mat-form-field style="width: 50%; font-size: 16px;">
+                <mat-label>Seleccione tipo figura:</mat-label>
+                <mat-select formControlName="tipoFigura">
+                  <mat-option *ngFor="let tipoFigura of listaFigura" class="empty-select" [value]="tipoFigura.tipoFigura"
+                  (click)="cargaRegistrosTipoFigura(tipoFigura.tipoFigura)">
+                    {{ tipoFigura.tipoFigura }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            <!-- Formulario -->
+            <div style="max-width: 100%;">
+                <div>
+                    <mat-table [dataSource]="dataSource" matSort>
+                        <ng-container matColumnDef="tipoFigura">
+                            <mat-header-cell *matHeaderCellDef style="flex: 0 0 15%;" mat-sort-header>
+                                Tipo figura
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let reg" style="flex: 0 0 15%;">
+                                {{reg.tipoFigura}}
+                            </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="superficie">
+                            <mat-header-cell *matHeaderCellDef style="flex: 0 0 12%;" mat-sort-header>
+                                Superficie
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let reg" style="flex: 0 0 12%;">
+                                {{reg.superficie}}
+                            </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="base">
+                            <mat-header-cell *matHeaderCellDef style="flex: 0 0 22%;" mat-sort-header>
+                                Base
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let reg" style="flex: 0 0 22%;">
+                                {{reg.base}}
+                            </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="altura">
+                            <mat-header-cell *matHeaderCellDef style="flex: 0 0 22%;" mat-sort-header>
+                                Altura
+                            </mat-header-cell>
+                            <mat-cell class="description-cell" style="flex: 0 0 22%;" *matCellDef="let reg">
+                                {{reg.altura}}
+                            </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="diametro">
+                            <mat-header-cell *matHeaderCellDef style="flex: 0 0 22%;" mat-sort-header>
+                                Diametro
+                            </mat-header-cell>
+                            <mat-cell class="description-cell" style="flex: 0 0 22%;" *matCellDef="let reg">
+                                {{reg.diametro}}
+                            </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+                    </mat-table>
+                    <mat-paginator #paginator [pageIndex]="0" [pageSize]="20" [pageSizeOptions]="[5, 10, 15, 20]"
+                        style="color:#000000;background-color: #fafafa;">
+                    </mat-paginator>
+                </div>
+
+            </div>
+
+             <!-- FabButton -->
+        <div class="example-button-row fixed-action-btn">
+            <button mat-fab color="primary" class="mat-elevation-z8" type="button" matTooltip="Agregar nueva figura"
+              (click)="openDialogAgregarFigura()">
+              <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+            </button>
+          </div>
+          <br /><br />
+        </form>
+
+    </mat-drawer-content>
+</mat-drawer-container>

@@ -1,0 +1,5 @@
+environment.ts merge=ours
+environment.staging.ts merge=ours
+environment.prod.ts merge=ours
+login.component.html merge=ours
+Dockerfile merge=ours

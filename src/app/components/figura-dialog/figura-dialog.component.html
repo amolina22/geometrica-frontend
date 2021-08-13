@@ -1,0 +1,48 @@
+<form [formGroup]="form">
+    <h1 mat-dialog-title>
+        Agregar figura
+    </h1>
+    <div mat-dialog-content class="mat-typography">
+        <p>
+            <mat-form-field style="width: 100%; font-size: 16px;">
+                <mat-label>Seleccione tipo figura *:</mat-label>
+                <mat-select formControlName="tipoFigura">
+                    <mat-option *ngFor="let tipoFigura of listaFigura" class="empty-select"
+                        [value]="tipoFigura.tipoFigura">
+                        {{ tipoFigura.tipoFigura }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field class="example-full-width" style="width: 100%">
+                <input matInput formControlName="superficie" placeholder="Superficie" />
+            </mat-form-field>
+        </p>
+
+        <p>
+            <mat-form-field class="example-full-width" style="width: 100%">
+                <input matInput formControlName="base" placeholder="Base" />
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field class="example-full-width" style="width: 100%">
+                <input matInput formControlName="altura" placeholder="Altura" />
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field class="example-full-width" style="width: 100%">
+                <input matInput formControlName="diametro" placeholder="Diametro" />
+            </mat-form-field>
+        </p>
+    </div>
+    <div mat-stroked-button align="end">
+        <button mat-button color="accent" [mat-dialog-close]>
+            Cancelar
+        </button>
+        <button mat-stroked-button color="primary" [disabled]="!form.valid"
+            (click)="guardarFigura()" style="margin-left: 10px">
+            Guardar
+        </button>
+    </div>
+</form>

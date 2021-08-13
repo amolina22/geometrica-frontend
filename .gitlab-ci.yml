@@ -1,0 +1,10 @@
+# Extiende pipeline de Auto DevOps (https://docs.gitlab.com/ee/topics/autodevops/)
+include:
+  - template: Auto-DevOps.gitlab-ci.yml
+  - project: desarrollo/ci-cd
+    file: /templates/sonarqube.yml
+
+variables:
+  STAGING_ENABLED: 'true'
+  POSTGRES_ENABLED: 'false'
+  TEST_DISABLED: 'true'
